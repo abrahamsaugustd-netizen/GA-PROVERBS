@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAA Ga Proverbs</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import for a warm, local feel */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fce7f3; /* Very Light Pink/Magenta Background */
+            background-image: linear-gradient(135deg, #fce7ff 0%, #fbcfe8 100%);
+            min-height: 100vh;
+        }
+
+        /* Styling for the main wisdom text */
+        #proverb-text {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <div id="app" class="w-full max-w-xl">
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-extrabold text-[#9d174d] sm:text-6xl tracking-tight">
+                AAA Ga Gbeyei
+            </h1>
+            <p class="mt-2 text-xl text-[#831843] font-semibold">
+                AAA Ga Proverbs
+            </p>
+        </header>
+
+        <!-- Proverb Card -->
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl border-b-8 border-r-8 border-[#f472b6] transform transition duration-500 hover:shadow-3xl hover:-translate-y-0.5">
+            
+            <!-- Ga Proverb -->
+            <p id="proverb-text" class="text-3xl sm:text-4xl font-bold italic text-center text-gray-800 mb-6 leading-relaxed">
+                Kpoo gbɔ yɛ kpoo mli.
+            </p>
+
+            <!-- Separator -->
+            <div class="my-6 border-t-2 border-[#f9a8d4] w-1/3 mx-auto"></div>
+
+            <!-- English Meaning -->
+            <p id="meaning-text" class="text-lg sm:text-xl text-center text-gray-600 mb-8 font-medium">
+                "Dust returns to dust." (What goes around comes around; things return to their source.)
+            </p>
+
+            <!-- Button to get new proverb -->
+            <div class="flex justify-center">
+                <button 
+                    id="get-proverb-btn" 
+                    class="px-8 py-3 bg-[#be185d] text-white font-bold text-lg rounded-full shadow-lg hover:bg-[#9d174d] transition duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#f9a8d4] focus:ring-opacity-70"
+                >
+                    Get Another Proverb
+                </button>
+            </div>
+        </div>
+        
+        <!-- Footer / Source -->
+        <footer class="mt-10 text-center text-sm text-[#831843]">
+            <p>Ga Proverbs Collection</p>
+        </footer>
+    </div>
+
+    <script>
+        // Array of Ga proverbs and their English meanings (Expanded List with Funny/Witty additions)
+        const gaProverbs = [
+            // Original serious proverbs
+            { ga: "Kpoo gbɔ yɛ kpoo mli.", en: "\"Dust returns to dust.\" (What goes around comes around; things return to their source.)" },
+            { ga: "Nii ni yeɔ gbi kome tsuaa.", en: "\"A thing that lasts for one day.\" (Be patient, good things take time, or nothing lasts forever.)" },
+            { ga: "Atoŋ fɔ, ayabii ni aheŋ.", en: "\"You don't chew the bone, then drink water and swallow it.\" (You must deal with a problem thoroughly before moving on.)" },
+            { ga: "Akala shia bii bibioo.", en: "\"You don't use small threads to weave a big cloth.\" (Great results require great effort and resources.)" },
+            { ga: "Ga ji kpaŋmɔ.", en: "\"Ga is an agreement/covenant.\" (Unity and keeping promises are central to the Ga people.)" },
+            { ga: "Gbonyoŋ akɛ hiɛdɔɔ eyaaa.", en: "\"The dead do not go with shame.\" (In life, one must strive for honor and integrity.)" },
+            { ga: "Akaa fio gbele mli.", en: "\"Smallness does not mean death.\" (Don't underestimate small or humble beginnings; every great thing starts small.)" },
+            { ga: "Nyam nɛ nɔ ko yɛ shinaa.", en: "\"The moon's beauty is on the roof.\" (Every situation has its good or bad side, depending on perspective.)" },
+            { ga: "Jee mli kple, kple mli jee.", en: "\"Go from the front, come from the front.\" (Be direct and honest in your dealings.)" },
+            { ga: "Tsɔne kɛ ehiɛ ewieɔ.", en: "\"The pot speaks with its mouth (opening).\" (Your actions and output speak for you.)" },
+            { ga: "Gbɔmɔ kpakpa ji nii.", en: "\"A good person is wealth.\" (Value people and relationships above material possessions.)" },
+            
+            // New Funny / Witty Proverbs
+            { ga: "Atoŋ kɔ, akɛ gbekɛ bibioo yaa gbe tsoŋ.", en: "\"You don't chew kola nut and then take a small child to chase a ghost.\" (Meaning: Don't mix incompatible things, or don't use the weak for dangerous tasks.)" },
+            { ga: "Akɛ gbee ehoŋ tsumaa shia.", en: "\"You don't use saliva to cross a desert.\" (Meaning: Don't rely on insufficient, trivial means to achieve a monumental task.)" },
+            { ga: "Mɔ ni feɔ akɔntaa, le hu feɔ awuŋa.", en: "\"The one who calculates is the same one who plays the fool.\" (Meaning: Be cautious of clever people who intentionally pretend to be simple or foolish to deceive others.)" },
+            { ga: "Atoŋ fufu, akɛ tsei ekuɔ nu.", en: "\"You don't chew fufu and then use a stick to drink water.\" (Meaning: Don't make a simple or straightforward activity unnecessarily difficult or complicated.)" },
+            { ga: "Kɛ oyɛ tsiŋ, bɛŋŋ nɔ ni kɛ oyɛ tsoŋŋ, shwiŋ nɔ.", en: "\"If you have a goat, don't wish for a ram; if you have a tree, don't wish for a branch.\" (Meaning: Don't be greedy; appreciate what you already possess instead of constantly desiring more.)" },
+            { ga: "Hiɛdɔɔ kpakpa ewoŋ heloo.", en: "\"Good shame does not wear skin.\" (Meaning: If you are too shy or ashamed to ask for help, you will suffer the consequences alone.)" },
+            { ga: "Akɛ eheloo eheloo, shi aheloo eheloo ehee.", en: "\"The world is beautiful, but a beautiful world is not new.\" (Things that are considered beautiful or great have existed before; humility is key.)" },
+            { ga: "Mɔ ni kɛ enaa kɛjara gbee, efeŋ nɔ ko.", en: "\"The one who jokes with his own tongue will accomplish nothing.\" (Meaning: Excessive joking or flippancy prevents serious effort and success.)" },
+        ];
+
+        let lastIndex = -1; // To ensure the next proverb is different from the last one displayed if possible
+
+        const proverbTextElement = document.getElementById('proverb-text');
+        const meaningTextElement = document.getElementById('meaning-text');
+        const getProverbBtn = document.getElementById('get-proverb-btn');
+
+        /**
+         * Selects a random proverb from the array, ensuring it's not the same as the last one displayed.
+         */
+        function getRandomProverb() {
+            let newIndex;
+            // Loop until a new index is found, unless there's only one proverb
+            if (gaProverbs.length > 1) {
+                do {
+                    newIndex = Math.floor(Math.random() * gaProverbs.length);
+                } while (newIndex === lastIndex);
+            } else {
+                newIndex = 0; // If only one item, just use it
+            }
+            
+            lastIndex = newIndex;
+            return gaProverbs[newIndex];
+        }
+
+        /**
+         * Updates the display with the new proverb.
+         */
+        function displayProverb() {
+            const proverb = getRandomProverb();
+            
+            // Apply fade-out class (for transition effect)
+            proverbTextElement.classList.add('opacity-0', 'transition', 'duration-500');
+            meaningTextElement.classList.add('opacity-0', 'transition', 'duration-500');
+
+            // Wait for fade-out to complete, then change text and fade back in
+            setTimeout(() => {
+                proverbTextElement.textContent = proverb.ga;
+                meaningTextElement.textContent = proverb.en;
+                
+                // Remove fade-out class to fade back in
+                proverbTextElement.classList.remove('opacity-0');
+                meaningTextElement.classList.remove('opacity-0');
+            }, 300); // Shorter than the transition duration for smooth overlap
+        }
+
+        // Event Listener for the button
+        getProverbBtn.addEventListener('click', displayProverb);
+
+        // Initialize: Display the very first proverb on load (the one hardcoded in HTML)
+        // window.onload = displayProverb; 
+    </script>
+</body>
+</html>
